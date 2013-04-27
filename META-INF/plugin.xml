@@ -1,0 +1,76 @@
+<!DOCTYPE idea-plugin PUBLIC "Plugin/DTD" "http://plugins.intellij.net/plugin.dtd">
+<idea-plugin url="http://code.google.com/p/libraryfinder/">
+    <name>Library Finder</name>
+    <description>
+        <![CDATA[<b>Library Finder</b> helps to find library files (.jar/.zip) for any class/file name pattern.
+          It's a utility tool for managing library dependencies and it's a troubleshooting tool for <b>ClassNotFoundException</b> or <b>NoClassDefFoundError</b>.
+          It can also help setting up IntelliJ project/workspace by identifying libraries used by java files.
+          <ul><u>Features</u>
+          <li>Add library files to IntelliJ classpath(module/project/global) from search results</li>
+          <li>Support wildcard (*,?) file name patterns and regular expressions, hence, allowing to search for any file/resource types (.properties,.dtd,.tld,.xml, etc.)</li>
+          <li>Intention actions to resolve single or multiple unresolved imports</li>
+          <li>Open up file explorer in all IntelliJ supported platforms (Windows, Linux & Mac OS) navigating to the containing folder</li>
+          <li>Command line support, for example:
+              <code>java -jar "LibraryFinder.jar" /home/siddique org.apache.*</code>  
+          </li></ul>
+		  ]]>
+    </description>
+    <change-notes>
+        <![CDATA[
+          <ul>
+          <u>Version 1.4.1 changes:</u>
+          <li>Fixed NPE while launching config form in IntelliJ v11</li>
+          </ul>
+        ]]>
+    </change-notes>
+    <version>1.4.1</version>
+    <vendor email="siddique@boxysystems.com" url="http://www.BoxySystems.com">Siddique Hameed</vendor>
+    <idea-version since-build="111.69"/>
+    <project-components>
+        <component>
+            <implementation-class>com.boxysystems.libraryfinder.view.intellij.LibraryFinderPlugin</implementation-class>
+            <interface-class>com.boxysystems.libraryfinder.view.intellij.LibraryFinderPlugin</interface-class>
+        </component>
+    </project-components>
+
+    <application-components>
+        <component>
+            <implementation-class>com.boxysystems.libraryfinder.view.intellij.LibraryFinderHistory</implementation-class>
+            <interface-class>com.boxysystems.libraryfinder.view.intellij.LibraryFinderHistory</interface-class>
+        </component>
+        <component>
+            <implementation-class>com.boxysystems.libraryfinder.view.intellij.LibraryFinderConfigurationComponent
+            </implementation-class>
+        </component>
+    </application-components>
+
+    <actions>
+        <action id="LibraryFinderPlugin.Actions.LibraryFinderAction"
+                class="com.boxysystems.libraryfinder.view.intellij.actions.LibraryFinderAction" text="Find Library"
+                icon="/nodes/ppLib.png"
+                description="Find library file (.zip or .jar) which contains the given resource.">
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift Z"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="CutCopyPasteGroup"/>
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="com.boxysystems.libraryfinder.view.intellij.actions.OpenHelpAction"
+                class="com.boxysystems.libraryfinder.view.intellij.actions.OpenHelpAction" text="OpenHelpAction"/>
+        <action id="com.boxysystems.libraryfinder.view.intellij.actions.RerunAction"
+                class="com.boxysystems.libraryfinder.view.intellij.actions.RerunAction" text="RerunAction"/>
+        <action id="com.boxysystems.libraryfinder.view.intellij.actions.CloseWindowAction"
+                class="com.boxysystems.libraryfinder.view.intellij.actions.CloseWindowAction" text="CloseWindowAction"/>
+        <!--<group>-->
+            <!--<reference ref="LibraryFinderPlugin.Actions.LibraryFinderAction"/>-->
+            <!--<separator/>-->
+            <!---->
+            <!--<separator/>-->
+            <!---->
+            <!--<separator/>-->
+        <!--</group>-->
+        <group id="LibFinderPlugin.Actions.LibFinderGroup" text="L_ibrary Finder" description="Library Finder group">
+            <reference ref="LibraryFinderPlugin.Actions.LibraryFinderAction"/>
+            <separator/>
+            <add-to-group group-id="MainToolBar" anchor="before" relative-to-action="HelpTopics"/>
+        </group>
+    </actions>
+</idea-plugin>
