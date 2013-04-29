@@ -17,24 +17,18 @@
 
 package com.boxysystems.libraryfinder.view.intellij;
 
-import com.boxysystems.jgoogleanalytics.FocusPoint;
-import com.boxysystems.jgoogleanalytics.JGoogleAnalyticsTracker;
 import com.boxysystems.libraryfinder.model.Constants;
 import com.boxysystems.libraryfinder.model.LibraryFinderQuery;
 import com.boxysystems.libraryfinder.view.intellij.intention.FindLibrariesIntentionAction;
 import com.boxysystems.libraryfinder.view.intellij.intention.FindLibraryIntentionAction;
 import com.intellij.codeInsight.intention.IntentionManager;
-import com.intellij.ide.plugins.IdeaPluginDescriptor;
-import com.intellij.ide.plugins.PluginManager;
-import com.intellij.openapi.application.Application;
-import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ProjectComponent;
-import com.intellij.openapi.extensions.PluginId;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -47,29 +41,14 @@ public class LibraryFinderPlugin implements ProjectComponent {
   private Project project;
   private IntelliJLibraryFinderView view;
 
-  private JGoogleAnalyticsTracker jGoogleAnalyticsTracker = null;
-  private static final String GOOGLE_ANALYTICS_TRACKING_CODE = "UA-2184000-1";
-  private FocusPoint pluginLoadFocusPoint = new FocusPoint(Constants.PLUGIN_LOAD_ACTION);
 
   public LibraryFinderPlugin(Project project) {
     this.project = project;
-    initJGoogleAnalyticsTracker();
   }
 
-  private void initJGoogleAnalyticsTracker() {
-    IdeaPluginDescriptor libraryFinderPluginDescriptor = PluginManager.getPlugin(PluginId.getId(Constants.PLUGIN_ID));
-    String version = libraryFinderPluginDescriptor.getVersion();
-    jGoogleAnalyticsTracker = new JGoogleAnalyticsTracker(Constants.PLUGIN_ID, version, GOOGLE_ANALYTICS_TRACKING_CODE);
-    jGoogleAnalyticsTracker.setLoggingAdapter(new JGoogleAnalyticsLog4jAdapter());
-  }
-
-  public void track(FocusPoint focusPoint) {
-    jGoogleAnalyticsTracker.trackAsynchronously(focusPoint);
-  }
 
   public void projectOpened() {
-    track(pluginLoadFocusPoint);
-    final IntentionManager intentionManager = IntentionManager.getInstance(project);
+    final IntentionManager intentionManager = IntentionManager.getInstance();
     intentionManager.registerIntentionAndMetaData(new FindLibraryIntentionAction(), Constants.PLUGIN_ID);
     intentionManager.registerIntentionAndMetaData(new FindLibrariesIntentionAction(), Constants.PLUGIN_ID);
   }

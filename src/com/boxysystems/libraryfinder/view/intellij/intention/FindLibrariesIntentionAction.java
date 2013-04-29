@@ -17,7 +17,6 @@
 
 package com.boxysystems.libraryfinder.view.intellij.intention;
 
-import com.boxysystems.jgoogleanalytics.FocusPoint;
 import com.boxysystems.libraryfinder.model.Constants;
 import com.boxysystems.libraryfinder.model.PatternUtil;
 import com.boxysystems.libraryfinder.model.StringUtil;
@@ -44,7 +43,6 @@ import java.util.*;
 public class FindLibrariesIntentionAction extends LibraryFinderIntentionAction {
   private static Logger logger = Logger.getLogger(FindLibrariesIntentionAction.class);
 
-  private FocusPoint focusPoint = new FocusPoint(Constants.FIND_LIBRARIES_INTENTION_ACTION);
 
   @NotNull
   public String getText() {
@@ -84,7 +82,6 @@ public class FindLibrariesIntentionAction extends LibraryFinderIntentionAction {
   public void invoke(Project project, Editor editor, PsiFile psiFile) throws IncorrectOperationException {
     List<PsiImportStatementBase> unresolvedImports = getAllUnresolvedImports((PsiJavaFile) psiFile);
     if (unresolvedImports != null && unresolvedImports.size() > 0) {
-      LibraryFinderPlugin.instance(project).track(focusPoint);
       String fileNamePattern = getImportClassNames(unresolvedImports);
       LibraryFinderAction action = LibraryFinderAction.getInstance();
       action.performAction(project, fileNamePattern, PathUtil.getProjectRootFolder(project), true);

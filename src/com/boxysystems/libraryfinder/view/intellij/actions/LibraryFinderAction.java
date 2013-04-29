@@ -17,7 +17,6 @@
 
 package com.boxysystems.libraryfinder.view.intellij.actions;
 
-import com.boxysystems.jgoogleanalytics.FocusPoint;
 import com.boxysystems.libraryfinder.controller.IntelliJLibraryFinder;
 import com.boxysystems.libraryfinder.model.Constants;
 import com.boxysystems.libraryfinder.model.LibraryFinderQuery;
@@ -44,7 +43,6 @@ import javax.swing.*;
 public class LibraryFinderAction extends AnAction {
   private LibraryFinderQuery query = null;
   private IntelliJLibraryFinderView view = null;
-  private FocusPoint findLibraryFocusPoint = new FocusPoint(Constants.FIND_LIBRARY_ACTION);
 
   public static synchronized LibraryFinderAction getInstance() {
     return (LibraryFinderAction) ActionManager.getInstance().getAction("LibraryFinderPlugin.Actions.LibraryFinderAction");
@@ -75,7 +73,6 @@ public class LibraryFinderAction extends AnAction {
       dialog = new FindLibraryDialog(project);
       dialog.setEditorSelectedTextToFileName();
     }
-    LibraryFinderPlugin.instance(project).track(findLibraryFocusPoint);
     dialog.show();
     if (dialog.isOK()) {
       query = dialog.getSearchQuery();

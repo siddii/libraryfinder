@@ -1,15 +1,10 @@
 package com.boxysystems.libraryfinder.view.intellij.ui;
 
-import com.boxysystems.jgoogleanalytics.FocusPoint;
-import com.boxysystems.libraryfinder.model.Constants;
 import com.boxysystems.libraryfinder.view.intellij.LibraryFinderConfigurationComponent;
 import com.boxysystems.libraryfinder.view.intellij.LibraryFinderHistory;
-import com.boxysystems.libraryfinder.view.intellij.LibraryFinderPlugin;
 import com.intellij.openapi.fileChooser.FileChooser;
 import com.intellij.openapi.fileChooser.FileChooserDescriptor;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.project.ProjectManager;
-import com.intellij.openapi.project.Project;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -32,14 +27,7 @@ public class LibraryFinderConfigurationForm {
   private LibraryFinderHistory libraryFinderHistory = LibraryFinderHistory.getInstance();
   private final FileChooserDescriptor descriptor = new FileChooserDescriptor(true, false, false, false, false, false);
 
-//  private FocusPoint focusPoint = new FocusPoint(Constants.CONFIG_FORM);
-
   public LibraryFinderConfigurationForm() {
-
-//    Project defaultProject = ProjectManager.getInstance().getDefaultProject();
-//    if (defaultProject != null) {
-//      LibraryFinderPlugin.instance(defaultProject).track(focusPoint);
-//    }
     enableOrDisableClearClassFileNameButton();
     enableOrDisableClearDirHistoryButton();
 

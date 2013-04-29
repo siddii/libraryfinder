@@ -17,7 +17,6 @@
 
 package com.boxysystems.libraryfinder.view.intellij.intention;
 
-import com.boxysystems.jgoogleanalytics.FocusPoint;
 import com.boxysystems.libraryfinder.model.Constants;
 import com.boxysystems.libraryfinder.model.StringUtil;
 import com.boxysystems.libraryfinder.view.intellij.LibraryFinderPlugin;
@@ -44,7 +43,6 @@ import java.util.*;
 public class FindLibraryIntentionAction extends LibraryFinderIntentionAction {
   private static Logger logger = Logger.getLogger(FindLibraryIntentionAction.class);
 
-  private FocusPoint focusPoint = new FocusPoint(Constants.FIND_LIBRARY_INTENTION_ACTION);
 
   @NotNull
   public String getFamilyName() {
@@ -91,7 +89,6 @@ public class FindLibraryIntentionAction extends LibraryFinderIntentionAction {
     String fileName = getUnresolvedImport(editor, file);
     if (fileName != null) {
 
-      LibraryFinderPlugin.instance(project).track(focusPoint);
       LibraryFinderAction action = LibraryFinderAction.getInstance();
       action.performAction(project, fileName, PathUtil.getProjectRootFolder(project), false);
     }
