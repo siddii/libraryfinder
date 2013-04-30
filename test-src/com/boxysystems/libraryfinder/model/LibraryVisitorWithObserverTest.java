@@ -1,5 +1,7 @@
 package com.boxysystems.libraryfinder.model;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -39,18 +41,23 @@ public class LibraryVisitorWithObserverTest extends AbstractLibraryFinderTest {
         assertTrue(((String) observedArg).contains(Constants.SEARCH_MSG_PREFIX));
     }
 
-    public void testFindLibraryWithoutExcludedFolders() throws LibraryFinderException {
+    public void testFindLibraryWithoutExcludedFolders() throws LibraryFinderException, IOException {
         MockObserver observer = new MockObserver();
-        LibraryFinderQuery query = new LibraryFinderQuery(testLog4jJar.getParentFile().getPath(), "org/apache/log4j/Logger.class");
+        LibraryFinderQuery query = new LibraryFinderQuery(new File("./").getCanonicalPath(), "org/apache/log4j/Logger.class");
         LibraryVisitor visitor = new LibraryVisitor(query, observer);
         visitor.visitLibraries();
         Set<LibraryFinderResult> results = visitor.getResults();
-        assertEquals(1, results.size());
-        LibraryFinderResult actualResult = results.iterator().next();
-        assertEquals(log4jLibraryFinderResult, actualResult);
+        assertTrue(results.size() > 0);
         assertTrue(observer.getObservedArgs().size() > 0);
-        Object observedArg = observer.getObservedArgs().get(0);
-        assertTrue(((String) observedArg).contains(".svn"));
+        boolean excludedFolderFound = false;
+        for (int i = 0; i < observer.getObservedArgs().size(); i++) {
+            Object observedArg = observer.getObservedArgs().get(i);
+            if (((String) observedArg).contains(".git")) {
+                excludedFolderFound = true;
+                break;
+            }
+        }
+        assertTrue(excludedFolderFound);
     }
 
     public void testFindLibraryWithExcludedFolders() throws LibraryFinderException {

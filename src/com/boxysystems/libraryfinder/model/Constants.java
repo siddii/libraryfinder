@@ -43,7 +43,7 @@ public interface Constants {
   public static final String NEW_LINE = System.getProperty("line.separator");
   public static final String FIND_LIBRARY_TITLE = "Find Library";
   public static final String CLASSPATH_SEPARATOR = System.getProperty("path.separator");
-  public static final String DEFAULT_EXCLUDED_FOLDERS = "CVS;SCCS;RCS;rcs;.DS_Store;.svn;vssver.scc;vssver2.scc";
+  public static final String DEFAULT_EXCLUDED_FOLDERS = "CVS;SCCS;RCS;rcs;.DS_Store;.svn;vssver.scc;vssver2.scc;.git;.idea";
   public static final String OS = System.getProperty("os.name");
 
   // Tracking actions
