@@ -1,7 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.boxysystems.libraryfinder.controller.CommandLineLibraryFinder
-Built-By: Siddique Hameed
-Implementation-Title: LibraryFinder
-Implementation-Vendor: BoxySystems Inc.
-Implementation-Version: 1.3.2
-Implementation-URL: http://code.google.com/p/libraryfinder/
+Created-By: IntelliJ IDEA
+

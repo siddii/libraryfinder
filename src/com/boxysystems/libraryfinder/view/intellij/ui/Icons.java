@@ -24,23 +24,20 @@ package com.boxysystems.libraryfinder.view.intellij.ui;
  * Time: 11:30:07 PM
  */
 
+import com.intellij.openapi.util.IconLoader;
+
 import javax.swing.*;
 import java.net.URL;
 
 public class Icons {
 
-  public static final Icon RERUN_ICON = Icons.getIcon("/actions/refreshUsages.png");
+  public static final Icon RERUN_ICON = IconLoader.getIcon("/actions/refreshUsages.png");
   public static final Icon CLOSE_ICON =
-          Icons.getIcon("/actions/cancel.png");
+          IconLoader.getIcon("/actions/cancel.png");
   public static final Icon ERROR_ICON =
-          Icons.getIcon("/nodes/errorIntroduction.png");
+          IconLoader.getIcon("/nodes/errorIntroduction.png");
   public static final Icon LIBRARY_ICON =
-          Icons.getIcon("/fileTypes/archive.png");
+          IconLoader.getIcon("/fileTypes/archive.png");
   public static final Icon HELP_ICON =
-          Icons.getIcon("/actions/help.png");
-
-  private static ImageIcon getIcon(String location) {
-    final URL resource = Icons.class.getResource(location);
-    return new ImageIcon(resource);
-  }
+          IconLoader.getIcon("/actions/help.png");
 }

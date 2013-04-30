@@ -1,5 +1,5 @@
 <!DOCTYPE idea-plugin PUBLIC "Plugin/DTD" "http://plugins.intellij.net/plugin.dtd">
-<idea-plugin url="http://code.google.com/p/libraryfinder/">
+<idea-plugin url="https://github.com/siddii/libraryfinder">
     <name>Library Finder</name>
     <description>
         <![CDATA[<b>Library Finder</b> helps to find library files (.jar/.zip) for any class/file name pattern.
@@ -18,12 +18,12 @@
     <change-notes>
         <![CDATA[
           <ul>
-          <u>Version 1.4.1 changes:</u>
-          <li>Fixed NPE while launching config form in IntelliJ v11</li>
+          <u>Version 1.5 changes:</u>
+          <li>Updated to make it work on v12</li>
           </ul>
         ]]>
     </change-notes>
-    <version>1.4.1</version>
+    <version>1.5</version>
     <vendor email="siddique@boxysystems.com" url="http://www.BoxySystems.com">Siddique Hameed</vendor>
     <idea-version since-build="111.69"/>
     <project-components>
