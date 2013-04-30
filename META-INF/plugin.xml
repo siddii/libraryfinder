@@ -19,13 +19,13 @@
         <![CDATA[
           <ul>
           <u>Version 1.5 changes:</u>
-          <li>Updated to make it work on v12</li>
+          <li>Updated for v12</li>
           </ul>
         ]]>
     </change-notes>
     <version>1.5</version>
     <vendor email="siddique@boxysystems.com" url="http://www.BoxySystems.com">Siddique Hameed</vendor>
-    <idea-version since-build="111.69"/>
+    <idea-version since-build="122.519"/>
     <project-components>
         <component>
             <implementation-class>com.boxysystems.libraryfinder.view.intellij.LibraryFinderPlugin</implementation-class>
