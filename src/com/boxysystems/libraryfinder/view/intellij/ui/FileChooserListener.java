@@ -51,15 +51,9 @@ public class FileChooserListener implements ActionListener {
 
         VirtualFile[] files;
 
-        if (baseDir == null) {
-            files = FileChooser.chooseFiles(project, descriptor);
-        } else {
-            files = FileChooser.chooseFiles(project, descriptor, baseDir);
-        }
-        if ((files != null) && (files.length > 0)) {
-            dirHistory.setText(files[0].getPresentableUrl());
-            dirHistory.selectText();
-        }
+        files = FileChooser.chooseFiles(descriptor, project, baseDir);
+        dirHistory.setText(files[0].getPresentableUrl());
+        dirHistory.selectText();
     }
 
     private VirtualFile getBaseDir() {
